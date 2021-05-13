@@ -6,6 +6,7 @@ const fetchWeatherUrl = "/api/location/";
 const apiKey = '48b494887f537657b690bf872ed821b0';
 const getMoviePopular = 'movie/popular?api_key=$apiKey&language=en-US&page=1';
 const getMovieTopRate = 'movie/top_rated?api_key=$apiKey&language=en-US&page=1';
+const getMovieUpcoming = 'movie/upcoming?api_key=$apiKey&language=en-US&page=1';
 const getImagePosterMovie = 'https://image.tmdb.org/t/p/w500';
 //Môi trường dev
 class DevEnvironment{

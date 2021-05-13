@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:movie_app/modules/moviePopularModule/bindings/movie_upcoming_binding.dart';
 import '/models/common/error_model.dart';
 import '/modules/common/error_page.dart';
 import '/modules/moviePopularModule/bindings/movie_popular_binding.dart';
@@ -23,7 +24,7 @@ class AppPages {
     GetPage(
       name: Routes.MOVIE_POPULAR,
       page: () => MovieHomePage(),
-      bindings: [MoviePopularBinding(), MovieTopRateBinding()],
+      bindings: [MoviePopularBinding(), MovieTopRateBinding(), MovieUpcomingBinding()],
     ),
 
   ];
