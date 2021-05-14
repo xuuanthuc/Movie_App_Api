@@ -1,5 +1,7 @@
 import '/models/movie_model.dart';
 
-abstract class IMoviePopularRepository {
+abstract class IMovieRepository {
   Future<MoviePopularModel> getMoviePopular();
+  Future<MoviePopularModel> getMovieTopRate();
+  Future<MoviePopularModel> getMovieUpcoming();
 }

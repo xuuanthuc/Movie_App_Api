@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '/data/url_api.dart';
-import '/modules/moviePopularModule/controllers/movie_popular_controller.dart';
-import '/modules/moviePopularModule/controllers/movie_top_rate_controller.dart';
+import '/modules/moviePopularModule/controllers/movie_controller.dart';
 import '/util/common/screen_util.dart';
 
-class DetailMoviePopular extends StatelessWidget {
-  MoviePopularController moviePopularController = Get.find();
+class DetailMovie extends StatelessWidget {
+  String type;
+
+  DetailMovie({required this.type});
+
+  MovieController moviePopularController = Get.find();
 
   // var moviedId = Get.arguments[0];
-
   @override
   Widget build(BuildContext context) {
     var movieId = Get.arguments;
-    var loadedMovie = moviePopularController.findById(movieId);
+     // var loadedMovie = moviePopularController.findByIdPopular(movieId);
+     var loadedMovie = moviePopularController.findById(movieId, type);
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -45,12 +49,13 @@ class DetailMoviePopular extends StatelessWidget {
                         centerTitle: true,
                         title: Padding(
                           padding: EdgeInsets.only(
-                              bottom: height(80), left: width(40), right: width(40)),
+                              bottom: height(80),
+                              left: width(40),
+                              right: width(40)),
                           child: Text(
                             loadedMovie.title.toString(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-
                               fontSize: size(16),
                             ),
                           ),
@@ -63,7 +68,8 @@ class DetailMoviePopular extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(radius(10)),
-                            border: Border.all(color: Colors.grey, width: width(1))),
+                            border: Border.all(
+                                color: Colors.grey, width: width(1))),
                         height: height(200),
                         width: width(133),
                         child: ClipRRect(
@@ -93,7 +99,8 @@ class DetailMoviePopular extends StatelessWidget {
                                 Text(
                                   '${loadedMovie.voteAverage} (${loadedMovie.voteCount} Reviews)',
                                   style: TextStyle(
-                                      color: Colors.white70, fontSize: size(16)),
+                                      color: Colors.white70,
+                                      fontSize: size(16)),
                                 ),
                               ],
                             ),
@@ -112,7 +119,8 @@ class DetailMoviePopular extends StatelessWidget {
                                 Text(
                                   '${loadedMovie.releaseDate} Released',
                                   style: TextStyle(
-                                      color: Colors.white70, fontSize: size(16)),
+                                      color: Colors.white70,
+                                      fontSize: size(16)),
                                 ),
                               ],
                             ),
@@ -125,22 +133,44 @@ class DetailMoviePopular extends StatelessWidget {
                           children: [
                             Column(
                               children: [
-                                Icon(Icons.bookmarks_outlined, color: Colors.black54,),
-                                Text('Watchlist',style: TextStyle(color: Colors.black54),),
+                                Icon(
+                                  Icons.bookmarks_outlined,
+                                  color: Colors.black54,
+                                ),
+                                Text(
+                                  'Watchlist',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
                               ],
                             ),
-                            SizedBox(width: width(30),),
+                            SizedBox(
+                              width: width(30),
+                            ),
                             Column(
                               children: [
-                                Icon(Icons.favorite_outline,color: Colors.black54,),
-                                Text('Favourite',style: TextStyle(color: Colors.black54),),
+                                Icon(
+                                  Icons.favorite_outline,
+                                  color: Colors.black54,
+                                ),
+                                Text(
+                                  'Favourite',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
                               ],
                             ),
-                            SizedBox(width: width(30),),
+                            SizedBox(
+                              width: width(30),
+                            ),
                             Column(
                               children: [
-                                Icon(Icons.share_outlined,color: Colors.black54,),
-                                Text('Share',style: TextStyle(color: Colors.black54),),
+                                Icon(
+                                  Icons.share_outlined,
+                                  color: Colors.black54,
+                                ),
+                                Text(
+                                  'Share',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
                               ],
                             ),
                           ],
@@ -152,8 +182,8 @@ class DetailMoviePopular extends StatelessWidget {
             SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
               return Padding(
-                padding:
-                     EdgeInsets.symmetric(horizontal: width(20), vertical: height(10)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: width(20), vertical: height(10)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -169,7 +199,8 @@ class DetailMoviePopular extends StatelessWidget {
                     ),
                     Text(
                       loadedMovie.overview,
-                      style: TextStyle(color: Colors.black38, fontSize: size(18)),
+                      style:
+                          TextStyle(color: Colors.black38, fontSize: size(18)),
                     )
                   ],
                 ),

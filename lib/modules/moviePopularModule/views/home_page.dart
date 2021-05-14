@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/modules/moviePopularModule/controllers/movie_upcoming_controller.dart';
-import 'package:movie_app/modules/moviePopularModule/views/widget/showall_upcoming.dart';
-import '/modules/moviePopularModule/controllers/movie_popular_controller.dart';
-import '/modules/moviePopularModule/controllers/movie_top_rate_controller.dart';
+import 'package:movie_app/util/theme/type_movie.dart';
+import '/modules/moviePopularModule/controllers/movie_controller.dart';
 import '/modules/moviePopularModule/views/widget/deltail_movie_popular.dart';
-import '/modules/moviePopularModule/views/widget/deltail_movie_top_rate.dart';
-import '/modules/moviePopularModule/views/widget/movie_toprate_list_tile.dart';
-import '/modules/moviePopularModule/views/widget/showall_popular.dart';
-import '/modules/moviePopularModule/views/widget/showall_toprate.dart';
+import '/modules/moviePopularModule/views/widget/showall.dart';
 import '/util/common/screen_util.dart';
-import 'widget/deltail_movie_upcoming.dart';
 import 'widget/movie_list_tile.dart';
-import 'widget/movie_upcoming_list_tile.dart';
 
 class MovieHomePage extends StatelessWidget {
-  final MoviePopularController _moviePopularController = Get.find();
-  final MovieTopRateController _movieTopRateController = Get.find();
-  final MovieUpcomingController _movieUpcomingController = Get.find();
+  final MovieController _movieController = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +66,7 @@ class MovieHomePage extends StatelessWidget {
                     ]),
               ),
               GestureDetector(
-                  onTap: () => Get.to(ShowAllUpcoming()),
+                  onTap: () => Get.to(ShowAll(title: Type.UPCOMING, )),
                   child: Text(
                     'Show All',
                     style: TextStyle(
@@ -90,9 +81,9 @@ class MovieHomePage extends StatelessWidget {
           ),
           Container(
             height: height(200),
-            child: GetBuilder<MovieUpcomingController>(
-              init: _movieUpcomingController,
-              builder: (context) => _movieUpcomingController.isLoading
+            child: GetBuilder<MovieController>(
+              init: _movieController,
+              builder: (context) => _movieController.isLoading
                   ? LinearProgressIndicator(
                       backgroundColor: Colors.red[200],
                       valueColor:
@@ -104,19 +95,20 @@ class MovieHomePage extends StatelessWidget {
                         itemBuilder: (_, index) => GestureDetector(
                           onTap: () {
                             var movieData =
-                            _movieUpcomingController.movies.results![index];
+                            _movieController.moviesUpcoming.results![index];
                             Get.to(
-                              DetailMovieUpcoming(),
+                              DetailMovie(type: Type.UPCOMING,),
                               arguments: movieData.id,
                             );
                             print(movieData.title);
                           },
-                          child: MovieUpcomingListTile(
+                          child: MovieListTile(
+                            type: Type.UPCOMING,
                             index: index,
                           ),
                         ),
                         itemCount:
-                        _movieUpcomingController.movies.results!.length,
+                        _movieController.moviesUpcoming.results!.length,
                       ),
                     ),
             ),
@@ -149,7 +141,7 @@ class MovieHomePage extends StatelessWidget {
                     ]),
               ),
               GestureDetector(
-                  onTap: () => Get.to(ShowAllTopRate()),
+                  onTap: () => Get.to(ShowAll(title: Type.TOPRATE)),
                   child: Text(
                     'Show All',
                     style: TextStyle(
@@ -164,35 +156,36 @@ class MovieHomePage extends StatelessWidget {
           ),
           Container(
             height: height(200),
-            child: GetBuilder<MovieTopRateController>(
-              init: _movieTopRateController,
-              builder: (context) => _movieTopRateController.isLoading
+            child: GetBuilder<MovieController>(
+              init: _movieController,
+              builder: (context) => _movieController.isLoading
                   ? LinearProgressIndicator(
-                      backgroundColor: Colors.red[200],
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.redAccent),
-                    )
+                backgroundColor: Colors.red[200],
+                valueColor:
+                AlwaysStoppedAnimation<Color>(Colors.redAccent),
+              )
                   : Container(
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, index) => GestureDetector(
-                          onTap: () {
-                            var movieData =
-                                _movieTopRateController.movies.results![index];
-                            Get.to(
-                              DetailMovieTopRate(),
-                              arguments: movieData.id,
-                            );
-                            print(movieData.title);
-                          },
-                          child: MovieTopRateListTile(
-                            index: index,
-                          ),
-                        ),
-                        itemCount:
-                            _movieTopRateController.movies.results!.length,
-                      ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, index) => GestureDetector(
+                    onTap: () {
+                      var movieData =
+                      _movieController.moviesTopRate.results![index];
+                      Get.to(
+                        DetailMovie(type: Type.TOPRATE,),
+                        arguments: movieData.id,
+                      );
+                      print(movieData.title);
+                    },
+                    child: MovieListTile(
+                      type: Type.TOPRATE,
+                      index: index,
                     ),
+                  ),
+                  itemCount:
+                  _movieController.moviesTopRate.results!.length,
+                ),
+              ),
             ),
           ),
         ],
@@ -224,7 +217,7 @@ class MovieHomePage extends StatelessWidget {
                     ]),
               ),
               GestureDetector(
-                  onTap: () => Get.to(ShowAllPopular()),
+                  onTap: () => Get.to(ShowAll(title: Type.POPULAR,)),
                   child: Text(
                     'Show All',
                     style: TextStyle(
@@ -239,35 +232,36 @@ class MovieHomePage extends StatelessWidget {
           ),
           Container(
             height: height(200),
-            child: GetBuilder<MoviePopularController>(
-              init: _moviePopularController,
-              builder: (context) => _moviePopularController.isLoading
+            child: GetBuilder<MovieController>(
+              init: _movieController,
+              builder: (context) => _movieController.isLoading
                   ? LinearProgressIndicator(
-                      backgroundColor: Colors.red[200],
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.redAccent),
-                    )
+                backgroundColor: Colors.red[200],
+                valueColor:
+                AlwaysStoppedAnimation<Color>(Colors.redAccent),
+              )
                   : Container(
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, index) => GestureDetector(
-                          onTap: () {
-                            var movieData =
-                                _moviePopularController.movies.results![index];
-                            Get.to(
-                              DetailMoviePopular(),
-                              arguments: movieData.id,
-                            );
-                            print(movieData.title);
-                          },
-                          child: MovieListTile(
-                            index: index,
-                          ),
-                        ),
-                        itemCount:
-                            _moviePopularController.movies.results!.length,
-                      ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, index) => GestureDetector(
+                    onTap: () {
+                      var movieData =
+                      _movieController.moviesPopular.results![index];
+                      Get.to(
+                        DetailMovie(type: Type.POPULAR,),
+                        arguments: movieData.id,
+                      );
+                      print(movieData.title);
+                    },
+                    child: MovieListTile(
+                      type: 'Popular',
+                      index: index,
                     ),
+                  ),
+                  itemCount:
+                  _movieController.moviesPopular.results!.length,
+                ),
+              ),
             ),
           ),
         ],

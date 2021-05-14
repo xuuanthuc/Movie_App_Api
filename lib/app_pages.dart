@@ -1,11 +1,8 @@
 import 'package:get/get.dart';
-import 'package:movie_app/modules/moviePopularModule/bindings/movie_upcoming_binding.dart';
 import '/models/common/error_model.dart';
 import '/modules/common/error_page.dart';
-import '/modules/moviePopularModule/bindings/movie_popular_binding.dart';
+import '/modules/moviePopularModule/bindings/movie_binding.dart';
 import '/modules/moviePopularModule/views/home_page.dart';
-import '/modules/splash/splash_page.dart';
-import 'modules/moviePopularModule/bindings/movie_top_rate_binding.dart';
 
 abstract class Routes {
   static const SPLASH = '/splash';
@@ -24,7 +21,7 @@ class AppPages {
     GetPage(
       name: Routes.MOVIE_POPULAR,
       page: () => MovieHomePage(),
-      bindings: [MoviePopularBinding(), MovieTopRateBinding(), MovieUpcomingBinding()],
+      bindings: [MovieBinding()],
     ),
 
   ];
