@@ -1,0 +1,47 @@
+{
+  "data": {
+    "id": 2,
+    "name": "Chương trình bình chọn APP Ngân Hàng được yêu thích nhất 20201",
+    "code": "GAME+BANK_2021",
+    "round": "R1",
+    "startTime": "2021-08-04T15:00:00.000Z",
+    "endTime": "2021-08-08T15:50:00.000Z",
+    "status": "PLAYING",
+    "description": null,
+    "createdAt": "2021-08-04T17:02:11.046Z",
+    "updatedAt": "2021-08-04T17:02:11.046Z",
+    "items": [
+      {
+        "id": 11,
+        "name": "Techcombank",
+        "thumbnail": "http://localhost:9000/uploads/no-image.png",
+        "content": null,
+        "createdAt": "2021-08-04T17:02:11.041Z",
+        "updatedAt": "2021-08-04T17:02:11.000Z",
+        "users": [],
+        "total": 1
+      },
+      {
+        "id": 10,
+        "name": "Vietcombank",
+        "thumbnail": "http://localhost:9000/uploads/no-image.png",
+        "content": null,
+        "createdAt": "2021-08-04T17:02:11.039Z",
+        "updatedAt": "2021-08-04T17:02:11.000Z",
+        "users": [],
+        "total": 1
+      },
+      {
+        "id": 9,
+        "name": "TPBank",
+        "thumbnail": "http://localhost:9000/uploads/no-image.png",
+        "content": null,
+        "createdAt": "2021-08-04T17:02:11.036Z",
+        "updatedAt": "2021-08-04T17:02:11.000Z",
+        "users": [],
+        "total": 2
+      }
+    ]
+  },
+  "statusCode": 200
+}
