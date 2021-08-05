@@ -18,8 +18,17 @@
         "content": null,
         "createdAt": "2021-08-04T17:02:11.041Z",
         "updatedAt": "2021-08-04T17:02:11.000Z",
-        "users": [],
-        "total": 1
+        "total": 1,
+        "users": [
+            {
+                "phone": "0998423432v",
+                "name": "thuc"
+            },
+             {
+                "phone": "0998423432v",
+                "name": "dsdqew"
+            }
+        ]
       },
       {
         "id": 10,
@@ -28,8 +37,17 @@
         "content": null,
         "createdAt": "2021-08-04T17:02:11.039Z",
         "updatedAt": "2021-08-04T17:02:11.000Z",
-        "users": [],
-        "total": 1
+        "total": 1,
+        "users": [
+            {
+                "phone": "0998423432v",
+                "name": "thuc"
+            },
+             {
+                "phone": "0998423432v",
+                "name": "dsdqew"
+            }
+        ]
       },
       {
         "id": 9,
@@ -38,8 +56,17 @@
         "content": null,
         "createdAt": "2021-08-04T17:02:11.036Z",
         "updatedAt": "2021-08-04T17:02:11.000Z",
-        "users": [],
-        "total": 2
+        "total": 1,
+        "users": [
+            {
+                "phone": "0998423432v",
+                "name": "thuc"
+            },
+             {
+                "phone": "0998423432v",
+                "name": "dsdqew"
+            }
+        ]
       }
     ]
   },
